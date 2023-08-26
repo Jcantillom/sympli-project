@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/sympli_back.iml" filepath="$PROJECT_DIR$/.idea/sympli_back.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/sympli-project.iml" filepath="$PROJECT_DIR$/.idea/sympli-project.iml" />
     </modules>
   </component>
 </project>
