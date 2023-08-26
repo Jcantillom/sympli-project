@@ -11,6 +11,8 @@ Este proyecto es la parte backend de una aplicación web desarrollada con Django
 
 1. Clona este repositorio: `git clone https://github.com/Jcantillom/sympli-project.git`
 2. Navega a la carpeta del backend: `cd sympli_back`
+3. Crea un entorno virtual: `python -m venv env`
+4. Activa el entorno virtual: `env\Scripts\activate`
 3. Instala las dependencias: `pip install -r requirements.txt`
 4. Realiza las migraciones: `python manage.py migrate`
 6. Inicia el servidor: `python manage.py runserver`
