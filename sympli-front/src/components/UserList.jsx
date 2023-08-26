@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './styles/UserList.css'; // Importa tus estilos CSS para este componente
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faEdit, faTrash} from '@fortawesome/free-solid-svg-icons';
 
 function UserList() {
     const [userList, setUserList] = useState([]);
 
     useEffect(() => {
-        // Realiza una solicitud GET a la API para obtener la lista de usuarios
         fetch('http://127.0.0.1:8000/api/users/')
             .then(response => response.json())
             .then(data => setUserList(data))
@@ -15,11 +14,37 @@ function UserList() {
     }, []);
 
     const handleEditUser = (userId) => {
-        // Implementa la lógica para editar el usuario con el ID proporcionado
+        try {
+            fetch('http://127.0.0.1:8000/api/users/' + userId)
+                .then(response => response.json())
+                .then(data => setUserList(data))
+                .catch(error => console.error('Error al obtener la lista de usuarios:', error));
+        } catch (e) {
+            console.log(e);
+        }
     };
 
+
     const handleDeleteUser = (userId) => {
-        // Implementa la lógica para eliminar el usuario con el ID proporcionado
+        try {
+            fetch('http://127.0.0.1:8000/api/users/' + userId, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Eliminación exitosa, actualiza la lista de usuarios
+                        setUserList(prevUserList => prevUserList.filter(user => user.id !== userId));
+                    } else {
+                        console.error('Error al eliminar el usuario');
+                    }
+                })
+                .catch(error => console.error('Error al obtener la lista de usuarios:', error));
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (
@@ -32,10 +57,10 @@ function UserList() {
                         <span className="user-email">{user.email}</span>
                         <div className="user-actions">
                             <button className="user-action" onClick={() => handleEditUser(user.id)}>
-                                <FontAwesomeIcon icon={faEdit} />
+                                <FontAwesomeIcon icon={faEdit}/>
                             </button>
                             <button className="user-action" onClick={() => handleDeleteUser(user.id)}>
-                                <FontAwesomeIcon icon={faTrash} />
+                                <FontAwesomeIcon icon={faTrash}/>
                             </button>
                         </div>
                     </li>
