@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles/UserList.css';
+import './styles/UserList.css'; // Importa tus estilos CSS para este componente
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -17,7 +17,10 @@ function UserList() {
         try {
             fetch('http://127.0.0.1:8000/api/users/' + userId)
                 .then(response => response.json())
-                .then(data => setUserList(data))
+                .then(data => {
+                    // Actualiza solo el usuario editado en lugar de toda la lista
+                    setUserList(prevUserList => prevUserList.map(user => user.id === userId ? data : user));
+                })
                 .catch(error => console.error('Error al obtener la lista de usuarios:', error));
         } catch (e) {
             console.log(e);
@@ -43,13 +46,6 @@ function UserList() {
         } catch (e) {
             console.log(e);
         }
-    };
-
-    const updateUserList = () => {
-        fetch('http://127.0.0.1:8000/api/users/')
-            .then(response => response.json())
-            .then(data => setUserList(data))
-            .catch(error => console.error('Error al obtener la lista de usuarios:', error));
     };
 
     return (

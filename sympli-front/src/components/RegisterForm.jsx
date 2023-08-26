@@ -50,7 +50,8 @@ function RegisterForm({updateUserList}) {
                         password: '',
                         confirmPassword: '',
                     });
-                    updateUserList(); // Actualiza la lista de usuarios en UserList
+
+                    window.location.reload();
                 });
             } else {
                 // Handle registration error
