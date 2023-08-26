@@ -1,0 +1,43 @@
+.user-list-container {
+    margin-top: 20px;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+}
+
+.user-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+}
+
+.user-name {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.user-email {
+    color: #666;
+}
+
+.user-actions {
+    margin-left: auto;
+}
+
+.user-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.user-action:hover {
+    color: #ff0000;
+}
