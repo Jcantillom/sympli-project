@@ -7,7 +7,7 @@ function App() {
     return (
         <div className="app-container">
             <h1 className="app-title">Registro de usuarios</h1>
-            <RegisterForm />
+            <RegisterForm updateUserList={UserList} />
             <UserList />
         </div>
     );

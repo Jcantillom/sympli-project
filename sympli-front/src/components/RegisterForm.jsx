@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import React, {useState} from 'react';
 import Swal from 'sweetalert2';
 import './styles/RegisterForm.css';
 
-function RegisterForm() {
+function RegisterForm({updateUserList}) {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -11,14 +12,13 @@ function RegisterForm() {
     });
 
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
+        const {name, value} = event.target;
+        setFormData({...formData, [name]: value});
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Verificar que las contraseñas coincidan
         if (formData.password !== formData.confirmPassword) {
             Swal.fire({
                 icon: 'error',
@@ -50,6 +50,7 @@ function RegisterForm() {
                         password: '',
                         confirmPassword: '',
                     });
+                    updateUserList(); // Actualiza la lista de usuarios en UserList
                 });
             } else {
                 // Handle registration error
@@ -67,10 +68,13 @@ function RegisterForm() {
     return (
         <form className="register-form" onSubmit={handleSubmit}>
             <h2>Registro</h2>
-            <input type="text" name="name" placeholder="Nombre" value={formData.name} onChange={handleInputChange} />
-            <input type="email" name="email" placeholder="Correo electrónico" value={formData.email} onChange={handleInputChange} />
-            <input type="password" name="password" placeholder="Contraseña" value={formData.password} onChange={handleInputChange} />
-            <input type="password" name="confirmPassword" placeholder="Confirmar contraseña" value={formData.confirmPassword} onChange={handleInputChange} />
+            <input type="text" name="name" placeholder="Nombre" value={formData.name} onChange={handleInputChange}/>
+            <input type="email" name="email" placeholder="Correo electrónico" value={formData.email}
+                   onChange={handleInputChange}/>
+            <input type="password" name="password" placeholder="Contraseña" value={formData.password}
+                   onChange={handleInputChange}/>
+            <input type="password" name="confirmPassword" placeholder="Confirmar contraseña"
+                   value={formData.confirmPassword} onChange={handleInputChange}/>
             <button type="submit">Registrarse</button>
         </form>
     );

@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import './styles/UserList.css'; // Importa tus estilos CSS para este componente
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEdit, faTrash} from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect } from 'react';
+import './styles/UserList.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function UserList() {
     const [userList, setUserList] = useState([]);
@@ -24,7 +24,6 @@ function UserList() {
         }
     };
 
-
     const handleDeleteUser = (userId) => {
         try {
             fetch('http://127.0.0.1:8000/api/users/' + userId, {
@@ -35,7 +34,6 @@ function UserList() {
             })
                 .then(response => {
                     if (response.ok) {
-                        // Eliminación exitosa, actualiza la lista de usuarios
                         setUserList(prevUserList => prevUserList.filter(user => user.id !== userId));
                     } else {
                         console.error('Error al eliminar el usuario');
@@ -45,6 +43,13 @@ function UserList() {
         } catch (e) {
             console.log(e);
         }
+    };
+
+    const updateUserList = () => {
+        fetch('http://127.0.0.1:8000/api/users/')
+            .then(response => response.json())
+            .then(data => setUserList(data))
+            .catch(error => console.error('Error al obtener la lista de usuarios:', error));
     };
 
     return (
