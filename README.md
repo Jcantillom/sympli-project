@@ -17,7 +17,7 @@ Este proyecto es la parte backend de una aplicación web desarrollada con Django
 4. Realiza las migraciones: `python manage.py migrate`
 6. Inicia el servidor: `python manage.py runserver`
 
-
+En otra terminal, teniendo correindo el servidor de backend, realiza los siguientes pasos
 # Proyecto Frontend
 
 Este proyecto es la parte frontend de una aplicación web desarrollada con React.
